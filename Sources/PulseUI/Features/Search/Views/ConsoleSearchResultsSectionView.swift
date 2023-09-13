@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import SwiftUI
 import Pulse
@@ -49,7 +49,7 @@ struct ConsoleSearchResultView: View {
             }
 #endif
         }
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         if isSeparatorNeeded {
             PlainListGroupSeparator()
         }
@@ -96,7 +96,7 @@ struct ConsoleSearchResultView: View {
         }
     }
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     @ViewBuilder
     private static func _makeDestination(for occurrence: ConsoleSearchOccurrence, task: NetworkTaskEntity) -> some View {
         switch occurrence.scope {
@@ -155,7 +155,7 @@ struct ConsoleSearchResultDetailsView: View {
     }
 }
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 @available(iOS 15, *)
 struct PlainListGroupSeparator: View {
     var body: some View {
@@ -177,7 +177,7 @@ struct PlainListSectionHeader<Content: View>: View {
         contents
             .padding(.top, 8)
             .listRowBackground(Color.separator.opacity(0.2))
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             .listRowSeparator(.hidden)
 #endif
     }

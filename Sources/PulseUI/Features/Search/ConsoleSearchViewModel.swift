@@ -12,7 +12,7 @@ protocol ConsoleEntitiesSource {
     var entities: [NSManagedObject] { get }
 }
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 final class ConsoleSearchBarViewModel: ObservableObject {
     @Published var text: String = ""
@@ -96,7 +96,7 @@ final class ConsoleSearchViewModel: ObservableObject, ConsoleSearchOperationDele
 
         self.context = store.newBackgroundContext()
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         searchBar.$text.sink {
             if $0.last == "\t" {
                 DispatchQueue.main.async {

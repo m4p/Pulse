@@ -34,7 +34,7 @@ struct RemoteLoggerEnterPasswordView: View {
             })
         }
         .inlineNavigationTitle("Enter Password")
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button("Cancel", role: .cancel) {

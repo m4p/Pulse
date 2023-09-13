@@ -105,7 +105,7 @@ final class TextHelper {
     }
 
     private func scaled(font: UXFont) -> UXFont {
-#if os(iOS) || os(tvOS) || os(watchOS)
+#if os(iOS) || os(visionOS) || os(tvOS) || os(watchOS)
         return UIFontMetrics.default.scaledFont(for: font)
 #else
         return font

@@ -28,7 +28,7 @@ struct ConsoleTaskCell: View {
 #if !os(macOS)
             details
 #endif
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             requestHeaders
 #endif
         }
@@ -61,7 +61,7 @@ struct ConsoleTaskCell: View {
             details
 #endif
             Spacer()
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
             PinView(task: task)
 #endif
 #if !os(watchOS)
@@ -106,7 +106,7 @@ struct ConsoleTaskCell: View {
             Spacer()
             time
         }
-#elseif os(iOS)
+#elseif os(iOS) || os(visionOS)
         infoText
             .lineLimit(1)
             .font(ConsoleConstants.fontInfo)

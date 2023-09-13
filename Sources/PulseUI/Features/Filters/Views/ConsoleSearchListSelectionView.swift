@@ -14,7 +14,7 @@ struct ConsoleSearchListSelectionView<Data: RandomAccessCollection, ID: Hashable
     let description: (Data.Element) -> String
     @ViewBuilder let label: (Data.Element) -> Label
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
     var limit = 6
 #else
     var limit = 3
@@ -88,7 +88,7 @@ struct ConsoleSearchListSelectionView<Data: RandomAccessCollection, ID: Hashable
 #if os(tvOS)
         .frame(width: 800)
 #endif
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
         .disableAutocorrection(true)
 #else

@@ -47,7 +47,7 @@ private struct RemoteLoggerPolicyDeniedView: View {
             Text("Open **Settings** / **Privacy** / **Local Network** and check that the app is listed and the toggle is enabled")
                 .font(.subheadline)
         }
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         Button("Open Settings") {
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         }
@@ -75,7 +75,7 @@ private struct RemoteLoggerNoAuthView: View {
                 )
                 .padding(.top, 8)
         }
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         Button("Copy Contents") {
             UXPasteboard.general.string = plistContents
         }

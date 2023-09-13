@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import SwiftUI
 import Pulse
@@ -46,7 +46,7 @@ struct ConsoleSearchToolbar: View {
     }
 
     private var searchOptionsView: some View {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             HStack(spacing: 14) {
                 ConsoleSearchContextMenu()
             }

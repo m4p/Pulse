@@ -36,7 +36,7 @@ struct ConsoleRouterView: View {
     }
 }
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 @available(iOS 15, *)
 extension ConsoleRouterView {
     var contents: some View {

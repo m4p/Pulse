@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS) || os(watchOS)
+#if os(iOS) || os(visionOS) || os(macOS) || os(watchOS)
 
 import SwiftUI
 import CoreData
@@ -35,7 +35,7 @@ struct ShareStoreView: View {
 
     @ViewBuilder
     private var content: some View {
-#if os(iOS) || os(watchOS)
+#if os(iOS) || os(visionOS) || os(watchOS)
         Form {
             sectionSharingOptions
             sectionShare
@@ -54,7 +54,7 @@ struct ShareStoreView: View {
             }
 #endif
         }
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
         .sheet(item: $viewModel.shareItems) {
             ShareView($0).onCompletion(onDismiss)
         }
@@ -79,7 +79,7 @@ struct ShareStoreView: View {
     private var sectionSharingOptions: some View {
         Section {
             ConsoleSessionsPickerView(selection: $viewModel.sessions)
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             NavigationLink(destination: destinationLogLevels) {
                 InfoRow(title: "Log Levels", details: viewModel.selectedLevelsTitle)
             }
@@ -113,11 +113,11 @@ struct ShareStoreView: View {
         }.inlineNavigationTitle("Log Levels")
     }
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
     private var sectionShare: some View {
         Section {
             Button(action: { viewModel.buttonSharedTapped() }) {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
                 HStack {
                     Spacer()
                     Text(viewModel.isPreparingForSharing ? "Exporting..." : "Share")
@@ -130,7 +130,7 @@ struct ShareStoreView: View {
             }
             .disabled(viewModel.isPreparingForSharing)
             .foregroundColor(.white)
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             .listRowBackground(viewModel.isPreparingForSharing ? Color.accentColor.opacity(0.33) : Color.accentColor)
 #endif
         }
@@ -160,7 +160,7 @@ struct ShareStoreView: View {
 @available(iOS 15, macOS 13, watchOS 9, *)
 struct ShareStoreView_Previews: PreviewProvider {
     static var previews: some View {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         NavigationView {
             ShareStoreView(onDismiss: {})
         }

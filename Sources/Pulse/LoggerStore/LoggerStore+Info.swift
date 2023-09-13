@@ -113,7 +113,7 @@ private func getAppIcon() -> Data? {
     return Graphics.encode(thumbnail)
 }
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(visionOS) || os(tvOS) 
 import UIKit
 
 func getDeviceId() -> UUID? {

@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import SwiftUI
 import CoreData
@@ -66,7 +66,7 @@ private struct _InternalConsoleListView: View {
 #endif
                 .onSubmit(of: .search, searchViewModel.value.onSubmitSearch)
                 .disableAutocorrection(true)
-#if os(iOS)
+#if os(iOS) || os(visionOS)
                 .textInputAutocapitalization(.never)
 #endif
         } else {
@@ -74,7 +74,7 @@ private struct _InternalConsoleListView: View {
                 .searchable(text: $searchBarViewModel.text)
                 .onSubmit(of: .search, searchViewModel.value.onSubmitSearch)
                 .disableAutocorrection(true)
-#if os(iOS)
+#if os(iOS) || os(visionOS)
                 .textInputAutocapitalization(.never)
 #endif
         }
@@ -83,7 +83,7 @@ private struct _InternalConsoleListView: View {
 
 #endif
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 @available(iOS 15, *)
 private struct _ConsoleListView: View {
     @Environment(\.isSearching) private var isSearching

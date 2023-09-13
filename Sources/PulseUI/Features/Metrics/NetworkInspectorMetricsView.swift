@@ -22,7 +22,7 @@ struct NetworkInspectorMetricsView: View {
                 NetworkInspectorTransactionView(viewModel: $0)
             }
         }
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         .listStyle(.insetGrouped)
 #endif
 #if os(macOS)

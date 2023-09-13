@@ -12,11 +12,11 @@ struct ConsoleFiltersView: View {
     @EnvironmentObject var viewModel: ConsoleFiltersViewModel
 
     var body: some View {
-#if os(iOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(visionOS) || os(watchOS) || os(tvOS)
         Form {
             form
         }
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         .navigationBarItems(leading: buttonReset)
 #endif
 #else
@@ -63,7 +63,7 @@ struct ConsoleFiltersView: View {
             labelsSection
         }
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
         timePeriodSection
 #endif
     }
@@ -86,7 +86,7 @@ extension ConsoleFiltersView {
         })
     }
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
     var timePeriodSection: some View {
         ConsoleSection(header: {
             ConsoleSectionHeader(icon: "calendar", title: "Time Period", filter: $viewModel.criteria.shared.dates)

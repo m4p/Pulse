@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import SwiftUI
 import Pulse
@@ -51,7 +51,7 @@ struct ConsoleSearchSuggestionsView: View {
             makeList(with: suggestions.filters)
         }
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         if viewModel.parameters.isEmpty {
             PlainListSectionHeaderSeparator(title: "Scopes").padding(.top, 16)
             ConsoleSearchScopesPicker(viewModel: viewModel)
@@ -70,7 +70,7 @@ struct ConsoleSearchSuggestionsView: View {
                 .font(.subheadline)
             }.buttonStyle(.plain)
         }
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 20))
         .listRowSeparator(.hidden, edges: .bottom)
 #endif

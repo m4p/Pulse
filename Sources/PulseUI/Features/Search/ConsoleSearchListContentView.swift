@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import SwiftUI
 import Pulse
@@ -14,7 +14,7 @@ struct ConsoleSearchListContentView: View {
     @EnvironmentObject private var viewModel: ConsoleSearchViewModel
 
     var body: some View {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         ConsoleSearchToolbar()
             .listRowBackground(Color.clear)
             .listRowSeparator(.hidden, edges: .top)
@@ -38,7 +38,7 @@ struct ConsoleSearchListContentView: View {
             .background(Color.accentColor)
             .cornerRadius(8)
         }
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         .listRowSeparator(.hidden)
 #endif
         .listRowBackground(Color.separator.opacity(0.2))
@@ -52,7 +52,7 @@ struct ConsoleSearchResultsListContentView: View {
     @EnvironmentObject private var viewModel: ConsoleSearchViewModel
 
     var body: some View {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         if !viewModel.results.isEmpty {
             PlainListGroupSeparator()
         }
@@ -62,7 +62,7 @@ struct ConsoleSearchResultsListContentView: View {
             ConsoleSearchResultView(viewModel: result, isSeparatorNeeded: !viewModel.parameters.terms.isEmpty && !isLast)
         }
         if !viewModel.isSearching && viewModel.hasMore {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             PlainListGroupSeparator()
 #endif
             Button(action: viewModel.buttonShowMoreResultsTapped) {

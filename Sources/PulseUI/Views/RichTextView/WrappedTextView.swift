@@ -2,12 +2,12 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import SwiftUI
 import Combine
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 
 struct WrappedTextView: UIViewRepresentable {
     let viewModel: RichTextViewModel
@@ -130,6 +130,8 @@ private func configureTextView(_ textView: UXTextView) {
 
 #if os(iOS)
     textView.keyboardDismissMode = .interactive
+#endif
+#if os(iOS) || os(visionOS)
     textView.alwaysBounceVertical = true
     textView.autocorrectionType = .no
     textView.autocapitalizationType = .none

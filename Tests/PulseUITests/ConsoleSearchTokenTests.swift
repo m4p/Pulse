@@ -6,7 +6,7 @@ import XCTest
 @testable import Pulse
 @testable import PulseUI
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 final class ConsoleSearchTokenTests: XCTestCase {
     func testStatusCodeFilter() throws {

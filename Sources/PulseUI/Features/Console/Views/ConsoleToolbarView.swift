@@ -2,14 +2,14 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import SwiftUI
 import Pulse
 import CoreData
 import Combine
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 @available(iOS 15, *)
 struct ConsoleToolbarView: View {
     @EnvironmentObject private var environment: ConsoleEnvironment

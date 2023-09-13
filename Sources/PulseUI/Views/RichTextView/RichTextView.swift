@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(macOS) || os(iOS)
+#if os(macOS) || os(iOS) || os(visionOS)
 
 import SwiftUI
 import CoreData
@@ -24,7 +24,7 @@ struct RichTextView: View {
         return copy
     }
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
     var body: some View {
         contents
             .onAppear { viewModel.prepare(searchContext) }

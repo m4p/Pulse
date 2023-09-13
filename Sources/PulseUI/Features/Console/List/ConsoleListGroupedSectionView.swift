@@ -2,7 +2,7 @@
 //
 // Copyright (c) 2020–2023 Alexander Grebenyuk (github.com/kean).
 
-#if os(iOS) || os(macOS)
+#if os(iOS) || os(visionOS) || os(macOS)
 
 import CoreData
 import Pulse
@@ -25,7 +25,7 @@ struct ConsoleListGroupedSectionView: View {
         ForEach(prefix, id: \.objectID, content: ConsoleEntityCell.init)
 
         if prefix.count < objects.count {
-#if os(iOS)
+#if os(iOS) || os(visionOS)
             NavigationLink(destination: ConsoleStaticList(entities: objects).inlineNavigationTitle(title)) {
                 PlainListSeeAllView(count: objects.count)
             }

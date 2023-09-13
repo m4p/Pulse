@@ -91,7 +91,7 @@ extension UIColor {
 
 #if os(tvOS)
 typealias UXTextView = UITextView
-#elseif os(iOS)
+#elseif os(iOS) || os(visionOS)
 typealias UXTextView = UITextView
 typealias UXPasteboard = UIPasteboard
 #endif
@@ -126,7 +126,7 @@ extension UXColor {
 
 // MARK: - NSTextView
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 extension UITextView {
     var isAutomaticLinkDetectionEnabled: Bool {
         get { dataDetectorTypes.contains(.link) }
@@ -139,10 +139,15 @@ extension UITextView {
         }
     }
 }
-
+#if os(iOS)
 func runHapticFeedback(_ type: UINotificationFeedbackGenerator.FeedbackType = .success) {
     UINotificationFeedbackGenerator().notificationOccurred(type)
 }
+#elseif os(visionOS)
+func runHapticFeedback() {
+    // Do nothing
+}
+#endif
 #endif
 
 #if os(macOS)
@@ -168,7 +173,7 @@ func runHapticFeedback(_ type: NSHapticFeedabackTypePlaceholder = .success) {
 #endif
 
 extension Image {
-#if os(iOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(visionOS) || os(watchOS) || os(tvOS)
     init(uxImage: UXImage) {
         self.init(uiImage: uxImage)
     }

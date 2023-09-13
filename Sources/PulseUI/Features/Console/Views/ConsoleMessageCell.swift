@@ -38,14 +38,14 @@ struct ConsoleMessageCell: View {
         HStack {
             Text(title)
                 .lineLimit(1)
-#if os(iOS)
+#if os(iOS) || os(visionOS)
                 .font(ConsoleConstants.fontInfo.weight(.medium))
 #else
                 .font(ConsoleConstants.fontTitle.weight(.medium))
 #endif
                 .foregroundColor(titleColor)
             Spacer()
-#if os(macOS) || os(iOS)
+#if os(macOS) || os(iOS) || os(visionOS)
             PinView(message: message)
 #endif
             HStack(spacing: 3) {
@@ -135,7 +135,7 @@ struct ConsoleConstants {
     static let fontTitle = Font.caption
     static let fontInfo = Font.caption
     static let fontBody = Font.body
-#elseif os(iOS)
+#elseif os(iOS) || os(visionOS)
     static let fontTitle = Font.subheadline.monospacedDigit()
     static let fontInfo = Font.caption.monospacedDigit()
     static let fontBody = Font.callout

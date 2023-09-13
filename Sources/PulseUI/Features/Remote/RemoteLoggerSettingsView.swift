@@ -64,7 +64,7 @@ struct RemoteLoggerSettingsView: View {
 #if os(macOS)
         .toggleStyle(.switch)
 #endif
-#if os(iOS)
+#if os(iOS) || os(visionOS)
         .padding(.vertical, 2)
 #endif
     }
@@ -108,7 +108,7 @@ struct RemoteLoggerSettingsView: View {
                     Image(systemName: "checkmark")
                         .foregroundColor(.accentColor)
                         .font(.system(size: 15, weight: .medium))
-#if os(iOS)
+#if os(iOS) || os(visionOS)
                         .frame(width: 21, height: 36, alignment: .center)
 #endif
                 }
